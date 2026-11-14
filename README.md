@@ -24,10 +24,10 @@ Change DPI stages, lighting and polling rate without Redragon's official softwar
 - Administrator rights, for restarting the mouse (see below).
 
 ## Download
-Get `VOLT.zip` from the [Releases](../../releases) page, unzip it anywhere and run `VOLT.exe`.
+Get the `.exe` from the [Releases](https://github.com/nasedev901/VOLT/releases) page and run it. No unzipping and no install.
 Windows asks for Administrator rights on every start (see [Why admin?](#why-administrator-and-why-does-the-mouse-restart)).
 
-Some antivirus engines flag PyInstaller programs that ask for admin and run PowerShell. If that happens, the full source is in this repo, and you can [build it yourself](BUILD.md) or run it from source.
+Some antivirus engines flag PyInstaller programs that ask for admin and run PowerShell. If that happens, the full source is in this repo, and you can [build it yourself](https://github.com/nasedev901/VOLT/blob/main/BUILD.md) or run it from source.
 
 ## Run from source
 ```
@@ -65,7 +65,7 @@ This mouse only loads its saved settings at power-up. VOLT writes your settings 
 VOLT is unofficial and not affiliated with Redragon. It writes to your mouse's flash memory. Large DPI jumps could hang the mouse in testing; VOLT writes them in safe steps and restarts the mouse to recover. If the mouse ever freezes, unplug and replug it. A backup is saved to `%APPDATA%\RedragonM711` before every Apply.
 
 ## Uninstall
-Delete the VOLT folder. To remove backups and settings too, delete `%APPDATA%\RedragonM711`. Your mouse keeps its settings; use *Restore backup* first if you want your old ones back.
+Delete `VOLT.exe`. To remove backups and settings too, delete `%APPDATA%\RedragonM711`. Your mouse keeps its settings; use *Restore backup* first if you want your old ones back.
 
 ## Troubleshooting
 - **"Not connected":** close the official Redragon software, replug the mouse and press *Rescan*.
@@ -93,5 +93,5 @@ The mouse protocol knowledge builds on earlier reverse-engineering work:
 ## License
 Copyright (C) 2026 nase
 
-VOLT is free software under the **GNU General Public License v3.0** (see [LICENSE](LICENSE)).
+VOLT is free software under the **GNU General Public License v3.0** (see [LICENSE](https://github.com/nasedev901/VOLT/blob/main/LICENSE)).
 You may use, share and modify it, but you must keep the copyright notice and credit the author, and any version you distribute must stay open source under the same license.
