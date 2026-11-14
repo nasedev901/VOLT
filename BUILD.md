@@ -26,7 +26,7 @@ py -m venv .venv && .venv\Scripts\activate
 py -m pip install -r requirements.txt
 py -m PyInstaller --noconfirm --clean VOLT.spec
 ```
-Result: `dist\VOLT\VOLT.exe` (zip the whole `dist\VOLT` folder to share it).
+Result: `dist\VOLT.exe` - one self-contained file, nothing else to ship.
 
 Equivalent single command without the spec:
 ```
@@ -35,9 +35,9 @@ py -m PyInstaller --noconfirm --clean --name VOLT --windowed --uac-admin --noupx
   --collect-data customtkinter --hidden-import hid --hidden-import volt_ui --hidden-import volt_backend volt.py
 ```
 
-### onedir (default, recommended) vs onefile
-* onedir: starts instantly, far fewer antivirus detections, easy to patch. Ship as a zip or an Inno Setup installer.
-* onefile: set `ONEFILE = True` in VOLT.spec -> `dist\VOLT.exe`. It unpacks to %TEMP% on every launch (2-5 s start-up) and is flagged more often.
+### onefile (default) vs onedir
+* onefile (default): one `VOLT.exe`. It unpacks to %TEMP% on every launch (2-5 s start-up) and is flagged by antivirus a bit more often.
+* onedir: set `ONEFILE = False` in VOLT.spec -> `dist\VOLT\VOLT.exe` plus an `_internal` folder (keep them together). Starts instantly and has fewer antivirus detections.
 
 ### Behaviour of the exe
 * `--uac-admin`: Windows shows the UAC prompt at every launch (the shield on the icon is normal). Needed for `pnputil /restart-device`.
@@ -47,7 +47,7 @@ py -m PyInstaller --noconfirm --clean --name VOLT --windowed --uac-admin --noupx
 
 ## Antivirus false positives
 A tool that talks to USB, launches PowerShell/pnputil and demands admin looks suspicious to heuristics. To reduce it:
-1. Build in a fresh venv, use onedir, keep UPX off (the spec does).
+1. Build in a fresh venv and keep UPX off (the spec does). onedir gets fewer detections than onefile.
 2. Build PyInstaller's bootloader yourself (`pip install pyinstaller --no-binary pyinstaller`, needs a C compiler); the prebuilt one is widely signatured.
 3. Code-sign the exe with a real certificate (self-signed does not help).
 4. Submit the file at https://www.microsoft.com/wdsi/filesubmission (and to the vendor that flags it) and publish the SHA-256.
