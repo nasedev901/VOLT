@@ -2,7 +2,7 @@
 import os
 from PyInstaller.utils.hooks import collect_data_files
 
-ONEFILE = False
+ONEFILE = True
 
 HERE = os.path.abspath(os.getcwd())
 
